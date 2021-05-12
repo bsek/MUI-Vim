@@ -142,7 +142,7 @@ do { static int c; KPrintF("%s[%ld]:%ld\n",__func__,__LINE__,++c); } while(0)
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-static Object *App, *Con, *Mnu, *Tlb, *Lsg, *Bsg, *Rsg;
+static Object *App, *Win, *Con, *Mnu, *Tlb, *Lsg, *Bsg, *Rsg;
 
 //------------------------------------------------------------------------------
 // VimCon - MUI custom class handling everything that the console normally
@@ -2275,6 +2275,7 @@ MUIDSP IPTR VimToolbarAddButton(Class *cls, Object *obj,
     {
         if(b->help && !strcmp((const char *) msg->Label, b->help))
         {
+            kprintf("Setting up notify for: %d with menu pointer %lu\n", b->ID, msg->ID);
             DoMethod(obj, MUIM_TheBar_Notify, (IPTR) b->ID, MUIA_Pressed, FALSE,
                      Con, 2, MUIM_VimCon_Callback, (IPTR) msg->ID);
 
@@ -2820,7 +2821,7 @@ MUIDSP IPTR VimScrollbarShow(Class *cls, Object *obj,
         set(obj, MUIA_ShowMe, TRUE);
 
         // Show group unless it's already shown.
-        IPTR shown;
+        IPTR shown = 0;
         get(my->grp, MUIA_ShowMe, &shown);
 
         if(!shown)
@@ -3723,7 +3724,7 @@ void gui_mch_set_menu_pos(int x, int y, int w, int h)
 //------------------------------------------------------------------------------
 int gui_mch_init(void)
 {
-    Object *Win, *Set = NULL, *Abo = NULL;
+    Object *Set = NULL, *Abo = NULL;
 
 #ifdef __amigaos4__
     if(!(MUIMasterBase = OpenLibrary("muimaster.library", 19)))
@@ -3964,7 +3965,7 @@ void gui_mch_exit(int rc)
         get(App, MUIA_Application_DiskObject, &icon);
 
         // Close window and destroy app
-        set(_win(App), MUIA_Window_Open, FALSE);
+        set(_win(Con), MUIA_Window_Open, FALSE);
         MUI_DisposeObject(App);
 
         // Free icon resources, MUI won't do this

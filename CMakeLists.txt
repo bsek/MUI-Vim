@@ -13,8 +13,11 @@ set(sources
         src/buffer.c
         src/bufwrite.c
         src/change.c
+        src/channel.c
         src/charset.c
         src/cindent.c
+        src/clipboard.c
+        src/clientserver.c
         src/cmdhist.c
         src/cmdexpand.c
         src/crypt.c
@@ -43,15 +46,20 @@ set(sources
         src/getchar.c
         src/hardcopy.c
         src/hashtab.c
+        src/help.c
         src/highlight.c
         src/if_cscope.c
+        src/iid_ole.c
         src/indent.c
+        src/insexpand.c
         src/insexpand.c
         src/json.c
         src/list.c
+        src/locale.c
         src/main.c
         src/mark.c
         src/map.c
+        src/match.c
         src/mbyte.c
         src/memfile.c
         src/memline.c
@@ -67,6 +75,7 @@ set(sources
         src/optionstr.c
         src/popupmenu.c
         src/popupwin.c
+        src/profiler.c
         src/quickfix.c
         src/regexp.c
         src/register.c
@@ -76,15 +85,20 @@ set(sources
         src/session.c
         src/sha256.c
         src/sign.c
+        src/sound.c
         src/spell.c
         src/spellfile.c
         src/spellsuggest.c
         src/syntax.c
         src/tag.c
+        src/time.c
         src/term.c
         src/termlib.c
         src/testing.c
         src/textprop.c
+        src/textobject.c
+        src/textformat.c
+        src/typval.c
         src/ui.c
         src/undo.c
         src/usercmd.c
@@ -92,6 +106,10 @@ set(sources
         src/version.c
         src/viminfo.c
         src/window.c
+        src/vim9compile.c
+        src/vim9execute.c
+        src/vim9script.c
+        src/vim9type.c
         src/xdiff/xdiffi.c
         src/xdiff/xemit.c
         src/xdiff/xhistogram.c
